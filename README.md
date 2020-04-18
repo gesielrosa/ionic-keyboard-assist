@@ -1,27 +1,87 @@
-# IonicKeyboardAssistDemo
+# ionic-keyboard-assist
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10.
+This wizard corrects the bug when the keyboard overlaps/cover the screen and does not allow it to scroll. The user cannot see what is typing in the field.
+(Android 9 reported issue)
 
-## Development server
+It is necessary "cordova-plugin-ionic-keyboard" plugin installed.
+- https://github.com/ionic-team/cordova-plugin-ionic-keyboard
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Tested in versions:
+Ionic: `@^4`
 
-## Code scaffolding
+Keyboard Plugin: `cordova-plugin-ionic-keyboard@^2.2.0`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+iOS: `13`
 
-## Build
+Android: `9`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Installation
 
-## Running unit tests
+To install the library:
+```
+npm install ionic-keyboard-assist --save
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Add the service to your `app.module.ts` as a provider and set `scrollPadding` and `scrollAssist` to false:
+```
+import { IonicKeyboardAssist } from 'ionic-keyboard-assist';
 
-## Running end-to-end tests
+@NgModule({
+  ...
+  IonicModule.forRoot({
+    scrollPadding: false,
+    scrollAssist: false
+  }),
+  ...
+  providers: [ IonicKeyboardAssist ],
+  ...
+})
+export class AppModule { }
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Set KeyboardResize plugin preference to false on `config.xml` (for iOS):
+[Read more](https://github.com/ionic-team/cordova-plugin-ionic-keyboard#keyboardresize-for-ios-only)
 
-## Further help
+```
+<preference name="KeyboardResize" value="false" />
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Then, import and inject into the `app.component.ts` constructor and start the service:
+```
+import { IonicKeyboardAssist } from 'ionic-keyboard-assist';
+
+constructor(private keyboardAssist: IonicKeyboardAssist ) { 
+  this.keyboardAssist.init();
+}
+```
+
+## Preferences
+
+### scrollPadding
+
+> Boolean (true by default)
+
+#### Possible values
+- `true`: Add a `padding-bottom` to the screen the same size as the keyboard.
+- `false`: Does not change the screen padding.
+
+(Depending on the device, the `cordova-plugin-ionic-keyboard` calculates the wrong height)
+
+### scrollAssist
+
+> Boolean (true by default)
+
+#### Possible values
+- `true`: Position the active/focused field in the center of the screen.
+- `false`: Does not give assistance to scroll.
+
+###### Set the configs
+```
+...
+  this.keyboardAssist.init({scrollPadding: true, scrollAssist: true});
+...
+or
+...
+  this.keyboardAssist.setOptions({scrollPadding: true, scrollAssist: true});
+...
+```
