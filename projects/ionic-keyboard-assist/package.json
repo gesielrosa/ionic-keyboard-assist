@@ -1,0 +1,27 @@
+{
+  "name": "ionic-keyboard-assist",
+  "version": "4.0.0",
+  "homepage": "https://github.com/gesielrosa/ionic-keyboard-assist#readme",
+  "author": {
+    "name": "Gesiel Rosa",
+    "email": "gesielr@gmail.com"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/gesielrosa/ionic-keyboard-assist"
+  },
+  "bugs": {
+    "url": "https://github.com/gesielrosa/ionic-keyboard-assist/issues"
+  },
+  "keywords": [
+    "ionic",
+    "keyboard",
+    "angular",
+    "scroll assist",
+    "padding assist"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0"
+  }
+}
