@@ -60,12 +60,13 @@ export class IonicKeyboardAssist implements OnDestroy {
    * @param event: keyboard event
    */
   private onKeyboardDidShow = (event) => {
-    const page = this.getActivePageElement();
     const modal = this.getActiveModalElement();
-    let activeElement = page;
+    let activeElement;
 
     if (modal) {
       activeElement = modal;
+    } else {
+      activeElement = this.getActivePageElement();
     }
 
     this.pages.push(activeElement);
