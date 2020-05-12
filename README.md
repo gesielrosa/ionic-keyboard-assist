@@ -1,3 +1,5 @@
+# ionic-keyboard-assist
+
 ![](https://img.shields.io/badge/me-%40gesiel.com-brightgreen)
 ![](https://img.shields.io/npm/v/ionic-keyboard-assist?label=npm%40latest)
 ![](https://img.shields.io/bundlephobia/minzip/ionic-keyboard-assist/latest)
@@ -6,8 +8,6 @@
 ![](https://img.shields.io/github/issues/gesielrosa/ionic-keyboard-assist)
 ![](https://img.shields.io/github/stars/gesielrosa/ionic-keyboard-assist)
 ![](https://img.shields.io/github/forks/gesielrosa/ionic-keyboard-assist)
-
-# ionic-keyboard-assist
 
 This wizard corrects the bug when the keyboard overlaps/cover the screen and does not allow it to scroll. The user cannot see what is typing in the field.
 (Android 9 reported issue)
